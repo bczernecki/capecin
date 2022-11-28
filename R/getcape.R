@@ -10,13 +10,14 @@
 #' @export
 #'
 #' @examples
-#' p_in = c(1000, 855, 700, 500, 300, 100, 10)
-#' t_in = c(25, 10, 0, -15, -30, -50, -92)
+#' p_in = c(1000, 850, 700, 500, 300, 100, 10)
+#' t_in = c(25, 30, 0, -15, -30, -50, -92)
 #' td_in = c(20, 5, -5, -30, -55, -80, -99)
+#' cape_cin(p_in, t_in = t_in, td_in = td_in)
 #'
 #'
 
-source("R/getthe.R")
+#source("R/getthe.R")
 
 
 cape_cin = function(p_in, t_in, td_in,
