@@ -1,20 +1,28 @@
-library(thunder)
+#' Compute CAPE/CIN according to George H. Bryan formula
+#'
+#' TODO
+#' To be completed..
+#'
+#' @param pinc = 2.0 # Pressure increment (Pa)
+#' @param source Source parcel: 1 = surface, 2 = most unstable (max theta-e), 3 = mixed-layer (specify ml_depth)
+#' @param ml_depth  depth (m) of mixed layer (for source = 3); default 200
+#' @param adiabat = 4   #! Formulation of moist adiabat: 1 = pseudoadiabatic, liquid only, 2 = reversible, liquid only, 3 = pseudoadiabatic, with ice,  4 = reversible, with ice
+#' @export
+#'
+#' @examples
+#' p_in = c(1000, 855, 700, 500, 300, 100, 10)
+#' t_in = c(25, 10, 0, -15, -30, -50, -92)
+#' td_in = c(20, 5, -5, -30, -55, -80, -99)
+#'
+#'
+
 source("R/getthe.R")
-p_in = c(1000, 855, 700, 500, 300, 100, 10)
-t_in = c(25, 10, 0, -15, -30, -50, -92)
-td_in = c(20, 5, -5, -30, -55, -80, -99)
+
+
+cape_cin = function(p_in, t_in, td_in,
+                    pinc = 100, source = 1, ml_depth = 200, adiabat = 4) {
+
 nk = length(p_in)
-
-pinc = 2.0 # Pressure increment (Pa)
-source = 2  # Source parcel: 1 = surface, 2 = most unstable (max theta-e), 3 = mixed-layer (specify ml_depth)
-ml_depth =  200.0  # depth (m) of mixed layer (for source = 3)
-
-adiabat = 4   #! Formulation of moist adiabat:
-#  ! 1 = pseudoadiabatic, liquid only
-#! 2 = reversible, liquid only
-#! 3 = pseudoadiabatic, with ice
-#! 4 = reversible, with ice
-
 g     = 9.81
 p00   = 100000.0
 cp    = 1005.7
@@ -366,5 +374,5 @@ if( (p[k] <= 10000.0) & (b2 < 0.0) ) {
 #
 #   return
 # end subroutine getcape
-
-#} # tu dopisac koniec funkcji
+return(list(cape, cin))
+} # tu dopisac koniec funkcji
